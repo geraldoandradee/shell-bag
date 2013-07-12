@@ -21,10 +21,7 @@ apt-get install sublime-text -y
 
 apt-get install gcc g++ build-essential -y
 
-apt-get install python-dev python-pip -y
-
-echo "Installing amarok, an (not so) better music player"
-apt-get install amarok -y
+echo "Do not install Amarok, its a fucking crap"
 
 echo "Installing google chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -35,10 +32,7 @@ echo "Installing CURL"
 apt-get install curl -y
 
 echo "Installing LAMP"
-apt-get install mysql-server mysql-client apache2 php5 libapache2-mod-php5 -y
-/etc/init.d/apache2 restart
-
-apt-get install php5-mysql php5-curl php5-gd php-pear php5-mcrypt php5-sqlite -y
+apt-get install mysql-server mysql-client apache2 php5 libapache2-mod-php5 apache2-mpm-itk php5-mysql php5-curl php5-gd php-pear php5-mcrypt php5-sqlite -y
 /etc/init.d/apache2 restart
 
 echo "For MP3 Troubles..."
@@ -51,4 +45,4 @@ apt-get install w64codecs ubuntu-restricted-extras -y
 echo "For Pythonists..."
 easy_install -U distribute
 echo "For some Troubles with MySQL-Python, LXML, mysql-client and some dependencies that not compile"
-apt-get install python-mysqldb libmysqlclient-dev libxml2-dev libxslt-dev python-lxml -y
+apt-get install python-dev python-pip python-mysqldb libmysqlclient-dev libxml2-dev libxslt-dev python-lxml -y
