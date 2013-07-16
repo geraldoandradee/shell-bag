@@ -33,6 +33,7 @@ apt-get install curl -y
 
 echo "Installing LAMP"
 apt-get install mysql-server mysql-client apache2 php5 libapache2-mod-php5 apache2-mpm-itk php5-mysql php5-curl php5-gd php-pear php5-mcrypt php5-sqlite -y
+a2enmod rewrite # activate a great mod
 /etc/init.d/apache2 restart
 
 echo "For MP3 Troubles..."
@@ -43,6 +44,9 @@ apt-get --yes install app-install-data-medibuntu apport-hooks-medibuntu
 apt-get install w64codecs ubuntu-restricted-extras -y
 
 echo "For Pythonists..."
-easy_install -U distribute
 echo "For some Troubles with MySQL-Python, LXML, mysql-client and some dependencies that not compile"
-apt-get install python-dev python-pip python-mysqldb libmysqlclient-dev libxml2-dev libxslt-dev python-lxml -y
+apt-get install python-dev python-pip python-mysqldb libmysqlclient-dev libxml2-dev libxslt-dev python-lxml python-sphinx -y
+easy_install -U distribute
+
+echo "Generals"
+apt-get install gimp -y
