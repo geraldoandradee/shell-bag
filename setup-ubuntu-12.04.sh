@@ -50,3 +50,5 @@ easy_install -U distribute
 
 echo "Generals"
 apt-get install gimp -y
+apt-get install inotify-tools # for daemons and watchers
+
