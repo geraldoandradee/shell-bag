@@ -1,0 +1,36 @@
+#!/bin/bash
+
+################################################################################
+######## FOLDER WATCHER - Geraldo Andrade <geraldo@geraldoandrade.com> #########
+################################################################################
+#
+# It works in simply mode. I try to check in while mode a folder content. It has
+# Usage:
+# $ ./watch_folder 'some command here'
+#
+# Let's test without pseudocode:
+#
+# $ ./watch_folder 'ls -lash'
+#
+# The code above runs 'ls -lash' at every changes in folder that watch_folder 
+# runs.
+#
+################################################################################
+
+echo "
+################################################################################
+######## FOLDER WATCHER - Geraldo Andrade <geraldo@geraldoandrade.com> #########
+################################################################################"
+
+# let me know if this exists
+has_inotify=`which inotifywait`
+
+if [ -z $has_inotify ]; then # if has no inotifywait
+    echo "System has no inotify-tools installed. You can install via sudo 
+apt-get install inotify-tools (if you in debian systems based)"
+    exit 1
+fi
+
+while inotifywait . -rq; do # let's watch it all
+    echo `$1` # if any thing changes run a command
+done
