@@ -24,5 +24,5 @@ This script setups a Ubuntu 12.04 machine for python developers.
 CHANGELOG
 ---------
 
-0.1.1 - Added folder_watcher bash script utility.
-0.1.0 - Initial script to setup a Ubuntu 12.04 machine.
+* 0.1.1 - Added folder_watcher bash script utility.
+* 0.1.0 - Initial script to setup a Ubuntu 12.04 machine.
