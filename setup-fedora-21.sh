@@ -27,4 +27,5 @@ rpm -i google-chrome-stable_current_x86_64.rpm
 wget http://download-cf.jetbrains.com/webide/PhpStorm-8.0.3.tar.gz
 wget http://download-cf.jetbrains.com/webstorm/WebStorm-9.0.3.tar.gz
 wget http://download-cf.jetbrains.com/python/pycharm-professional-4.0.5.tar.gz
+wget http://download-cf.jetbrains.com/idea/ideaIU-14.0.3.tar.gz
 
