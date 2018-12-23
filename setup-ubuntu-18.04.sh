@@ -4,7 +4,8 @@
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 GREEN='\033[0;32m'
-BLUE='\033[0;1m'
+BLUE='\033[0;34m'
+YELLOW='\033[0;93m'
 
 info() {
  echo "${BLUE}$1${NC}" 
@@ -12,6 +13,10 @@ info() {
 
 error() {
   echo "${RED}$1${NC}" 
+}
+
+warn() {
+  echo "${YELLOW}$1${NC}" 
 }
 
 success() {
@@ -34,6 +39,12 @@ install_goodies() {
   echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
   apt update
   apt install google-chrome-stable -y
+
+  info "Install some disk utilities"
+  apt install exfat-fuse exfat-utils -y
+  success "Goodies is installed"
+
+  apt install vlc -y
 }
 
 install_developer_things() {
@@ -74,12 +85,25 @@ setup_nvidia_graphic_card() {
   GRAPHIC_CARD=$(lspci | grep -i vga | grep GeForce | egrep -o 'GeForce\s\w+\s[0-9]+')
   if [ -z "$GRAPHIC_CARD" ]
   then
-      echo "Graphic Card ($GRAPHIC_CARD) not supported"
+      info "Graphic Card ($GRAPHIC_CARD) not supported"
   else
       add-apt-repository -u -s -y ppa:graphics-drivers/ppa
       ubuntu-drivers devices
       apt install $(ubuntu-drivers devices | grep -i recommended | egrep -o 'nvidia-driver-[0-9]+') -y
       success "NVIDIA Drivers installed SUCCESSFULLY"
+  fi
+}
+
+miscellaneous() {
+  info "Solving the BCM943602CS problem... Wifi works on Ubuntu 18.04 but bluetooth not..."
+  BCM_DEVICE=$(lsusb | grep -i 05ac:8290)
+  if [ -z "$BCM_DEVICE" ]
+  then
+      info "BCM943602CS was not detected. OK, keep going."
+  else
+      cp ./firmware/bluetooth/BCM-0a5c-6410.hcd /lib/firmware/brcm
+      warn "You need to reboot in order to make bluetooth work again."
+      success "BCM943602CS firmware installed SUCCESSFULLY"
   fi
 }
 
@@ -106,6 +130,7 @@ info "Some configurations will be applied to $COMMON_USER"
 install_goodies
 install_developer_things
 setup_nvidia_graphic_card
+miscellaneous
 
 info ""
 info ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
