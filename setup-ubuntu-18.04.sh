@@ -77,7 +77,15 @@ install_developer_things() {
   add-apt-repository -y -u -s "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   apt install docker-ce -y
   docker run hello-world
-  usermod -aG docker $COMMON_USER
+  
+  if [ -z "$COMMON_USER" ]
+  then
+      warn "Docker will only work on sudo user."
+  else
+      usermod -aG docker $COMMON_USER
+      warn "Now you can use docker with no sudo. But you're need to reboot."
+  fi
+  success "Docker installed SUCCESSFULLY"
 }
 
 setup_nvidia_graphic_card() {
@@ -96,7 +104,7 @@ setup_nvidia_graphic_card() {
 
 miscellaneous() {
   info "Solving the BCM943602CS problem... Wifi works on Ubuntu 18.04 but bluetooth not..."
-  BCM_DEVICE=$(lsusb | grep -i 05ac:8290)
+  BCM_DEVICE=$(lsusb | egrep -o '05ac:8290')
   if [ -z "$BCM_DEVICE" ]
   then
       info "BCM943602CS was not detected. OK, keep going."
