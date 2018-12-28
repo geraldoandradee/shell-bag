@@ -88,6 +88,12 @@ install_developer_things() {
       warn "Now you can use docker with no sudo. But you're need to reboot."
   fi
   success "Docker installed SUCCESSFULLY"
+
+  info "Installing Kubernetes"
+  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
+  apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+  apt install kubeadm -y
+  sucess "Kubernetes installed SUCCESSFULLY"
 }
 
 setup_nvidia_graphic_card() {
