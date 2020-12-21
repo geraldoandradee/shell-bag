@@ -4,6 +4,18 @@ SHELL-BAG
 A bunch of scripts for machine setup to get job done.
 
 
+Ubuntu 20.04 Setup Script
+-------------------------
+
+This script setups a Ubuntu 20.04 in a machine for developers. In this version of script supports:
+
+* Install NVIDIA drivers (for GTX 1080/1070/1060/1050/1050 ti);
+* Install Docker;
+* Install NodeJS 15;
+* Install VSCode;
+* Missing disk utils;
+
+
 Automated Tasks
 ---------------
 
@@ -38,6 +50,7 @@ This script setups a Ubuntu 18.04 in a machine for developers. In this version o
 CHANGELOG
 ---------
 
+* 0.3.0 - Added ubuntu 20.04 support.
 * 0.2.0 - Added ubuntu 18.04 support.
 * 0.1.1 - Added folder_watcher bash script utility.
 * 0.1.0 - Initial script to setup a Ubuntu 12.04 machine.
