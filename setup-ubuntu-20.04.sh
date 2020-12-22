@@ -20,7 +20,9 @@ install_goodies() {
 install_developer_things() {
   apt install vim terminator git-core gimp gcc g++ build-essential \
   gcc g++ build-essential curl software-properties-common \
-  apt-transport-https wget htop -y
+  apt-transport-https wget htop build-essential zlib1g-dev \
+  libncurses5-dev libgdbm-dev libnss3-dev libssl-dev \
+  libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev -y
 
   echo "Installing VSCode"
   curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -30,7 +32,11 @@ install_developer_things() {
 
   echo "Installing NodeJs 15"
   curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
-  apt install nodejs -y
+  apt install nodejs gcc g++ make -y
+
+  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt-get update && sudo apt-get install yarn -y
   echo "Nodejs installed"
 
   echo "Lets install Docker"
